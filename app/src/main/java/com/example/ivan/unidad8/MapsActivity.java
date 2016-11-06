@@ -1,6 +1,7 @@
 package com.example.ivan.unidad8;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +65,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
 
-        mapa.c
+        //SERVICIO DE MÚSICA
+
+        Button arrancar = (Button) findViewById(R.id.botonArrancar);
+        arrancar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                startService(new Intent(MapsActivity.this, ServicioMusica.class));
+            }
+            });
+
+        Button detener = (Button) findViewById(R.id.botonDetener);
+        detener.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                stopService(new Intent(MapsActivity.this, ServicioMusica.class));
+            } });
     }
 
     @Override
@@ -92,7 +107,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
-        muestraLocaliz(location);
 
     }
 
@@ -123,6 +137,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onResume() {
         super.onResume();
+        manejador.requestLocationUpdates(proveedor, TIEMPO_MIN, DISTANCIA_MIN, this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -133,13 +148,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        manejador.requestLocationUpdates(proveedor, TIEMPO_MIN, DISTANCIA_MIN, this);
+
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        manejador.removeUpdates(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -150,7 +166,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        manejador.removeUpdates(this);
     }
 
 
