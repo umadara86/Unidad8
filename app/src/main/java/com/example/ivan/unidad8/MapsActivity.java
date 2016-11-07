@@ -65,20 +65,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
 
-        //SERVICIO DE MÚSICA
-
-        Button arrancar = (Button) findViewById(R.id.botonArrancar);
-        arrancar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                startService(new Intent(MapsActivity.this, ServicioMusica.class));
-            }
-            });
-
-        Button detener = (Button) findViewById(R.id.botonDetener);
-        detener.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                stopService(new Intent(MapsActivity.this, ServicioMusica.class));
-            } });
     }
 
     @Override

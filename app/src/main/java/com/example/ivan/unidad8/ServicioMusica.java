@@ -34,7 +34,7 @@ public class ServicioMusica extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentText("información adicional");
 
-        PendingIntent intencionPendiente = PendingIntent.getActivity( this, 0, new Intent(this, MapsActivity.class), 0);
+        PendingIntent intencionPendiente = PendingIntent.getActivity( this, 0, new Intent(this, ReceptorSMS.class), 0);
         notific.setContentIntent(intencionPendiente);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
