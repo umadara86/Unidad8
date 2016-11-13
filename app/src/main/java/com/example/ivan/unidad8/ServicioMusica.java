@@ -20,8 +20,7 @@ public class ServicioMusica extends Service {
     private static final int ID_NOTIFICACION_CREAR = 1;
 
     @Override public void onCreate() {
-        Toast.makeText(this,"Servicio creado",
-            Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Servicio creado", Toast.LENGTH_SHORT).show();
         reproductor = MediaPlayer.create(this, R.raw.audio);
     }
 
@@ -34,8 +33,10 @@ public class ServicioMusica extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentText("información adicional");
 
-        PendingIntent intencionPendiente = PendingIntent.getActivity( this, 0, new Intent(this, ReceptorSMS.class), 0);
+
+        PendingIntent intencionPendiente = PendingIntent.getActivity( this, 0, new Intent(this, BotonActivity.class), 0);
         notific.setContentIntent(intencionPendiente);
+
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(ID_NOTIFICACION_CREAR, notific.build());

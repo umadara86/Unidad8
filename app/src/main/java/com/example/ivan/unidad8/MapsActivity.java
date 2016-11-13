@@ -12,28 +12,26 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener, LocationListener {
 
     private GoogleMap mapa;
 
     //EJERCICIO REDES
-    private static final long TIEMPO_MIN = 10 * 1000; // 10 segundos
-    private static final long DISTANCIA_MIN = 5; // 5 metros
+  //  private static final long TIEMPO_MIN = 10 * 1000; // 10 segundos
+    //private static final long DISTANCIA_MIN = 5; // 5 metros
 
-    private LocationManager manejador;
-    private String proveedor;
+//    private LocationManager manejador;
+  //  private String proveedor;
 
 
 
@@ -45,14 +43,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa);
         mapFragment.getMapAsync(this);
 
+
+
         //EJERCICIO REDES
-        manejador = (LocationManager) getSystemService(LOCATION_SERVICE);
+      /*  manejador = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         Criteria criterio = new Criteria();
         criterio.setCostAllowed(false);
         criterio.setAltitudeRequired(false);
         criterio.setAccuracy(Criteria.ACCURACY_FINE);
-        proveedor = manejador.getBestProvider(criterio, true);
+        proveedor = manejador.getBestProvider(criterio, true);*/
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -70,8 +70,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mapa = googleMap;
-        //LatLng UPV = new LatLng(39.481106, -0.340987); //Nos ubicamos en la UPV
-        //mapa.addMarker(new MarkerOptions().position(UPV).title("Marker UPV"));
         mapa.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
         if (ContextCompat.checkSelfPermission(this,
@@ -120,7 +118,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //METODOS DEL CICLO DE VIDA
 
-    @Override
+    /*@Override
     protected void onResume() {
         super.onResume();
         manejador.requestLocationUpdates(proveedor, TIEMPO_MIN, DISTANCIA_MIN, this);
@@ -152,7 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-    }
+    }*/
 
 
 

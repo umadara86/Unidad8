@@ -28,7 +28,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBl7oCQOzNgDBpGOPxzSmHl9BmO66wpp3Q"/>
         <service android:name=".ServicioMusica" />
-        <receiver android:name="ReceptorSMS" >
+        <receiver android:name="ReceptorSMS"
+            android:permission="android.permission.BROADCAST_SMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
             </intent-filter>
