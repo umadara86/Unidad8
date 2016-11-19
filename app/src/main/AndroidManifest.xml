@@ -7,6 +7,7 @@
     <uses-permission android:name ="android.permission.RECEIVE_SMS"/>
     <uses-feature android:name="android.hardware.location.gps" />
 
+
     <application
 
         android:allowBackup="true"
@@ -28,10 +29,15 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBl7oCQOzNgDBpGOPxzSmHl9BmO66wpp3Q"/>
         <service android:name=".ServicioMusica" />
-        <receiver android:name="ReceptorSMS"
-            android:permission="android.permission.BROADCAST_SMS">
+        <receiver android:name="com.example.ivan.unidad8.ReceptorSMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".ServicioMusica"/>
+        <receiver android:name=".ReceptorLlamadas">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
             </intent-filter>
         </receiver>
     </application>

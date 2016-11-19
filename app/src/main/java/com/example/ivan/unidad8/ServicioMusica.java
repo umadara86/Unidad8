@@ -33,13 +33,17 @@ public class ServicioMusica extends Service {
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentText("información adicional");
 
-
         PendingIntent intencionPendiente = PendingIntent.getActivity( this, 0, new Intent(this, BotonActivity.class), 0);
         notific.setContentIntent(intencionPendiente);
 
 
+
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(ID_NOTIFICACION_CREAR, notific.build());
+
+
+
+
 
 
         //SERVICIO
